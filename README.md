@@ -10,4 +10,5 @@ Olah Matrix menggunakan command minitab: [matrix.pdf](https://github.com/yuvanio
 Deskripsi data dan interpretasi: [project deskripsi data.pdf](https://github.com/yuvanioksarianti29/Project-Komputasi-Statistika/files/8147150/project.deskripsi.data.pdf)
 
 Membangkitkan data menggunakan command [project pembangkitan data.pdf](https://github.com/yuvanioksarianti29/Project-Komputasi-Statistika/files/8147151/project.pembangkitan.data.pdf)
+
 Uji dua sampel berpasangan: [uji 2 sampel berpasangan.pdf](https://github.com/yuvanioksarianti29/Project-Komputasi-Statistika/files/8147152/uji.2.sampel.berpasangan.pdf)
