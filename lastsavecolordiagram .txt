@@ -1,0 +1,607 @@
+
+R version 3.6.1 (2019-07-05) -- "Action of the Toes"
+Copyright (C) 2019 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> data=read.table(file.choose())
+Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec,  : 
+  line 2 did not have 15 elements
+> data=read.table(file.choose(),sep=";",header=T)
+> data
+   Kode_Kab.Kot.Nama_kab.kot.Kode_bencana.Kejadian.Lon.Lat.Jumlah.Bencana.Meninggal.dan.Hilang.Menderita.Mengungsi.Rumah.Rusak.Berat.Rumah.Rusak.Sedang.Rumah.Rusak.Ringan.Faskes.Rusak.Rumah.Ibadah.Rusak.Sekolah.Rusak
+1                                                                                                                                             1301,KEPULAUAN MENTAWAI,101,BANJIR,98.950602,-1.359494,4,0,0,0,0,0,0,0,0,0
+2                                                                                                                                               1302,PESISIR SELATAN,101,BANJIR,100.816773,-1.717765,2,0,0,0,0,0,0,0,0,5
+3                                                                                                                                                   1303,SOLOK,101,BANJIR,100.837884,-0.927534,3,1,3237,279,2,4,14,0,9,5
+4                                                                                                                                                   1304,SIJUNJUNG,101,BANJIR,101.149204,-0.648475,5,1,6,0,26,1,30,0,3,0
+5                                                                                                                                                 1305,TANAH DATAR,101,BANJIR,100.582793,-0.469818,1,6,0,24,11,0,0,0,0,1
+6                                                                                                                                            1306,PADANG PARIAMAN,101,BANJIR,100.209847,-0.566716,6,0,50,73,3,0,17,0,4,0
+7                                                                                                                                                       1307,AGAM,101,BANJIR,100.153757,-0.253182,5,0,1469,0,1,2,2,0,1,1
+8                                                                                                                                            1308,LIMA PULUH KOTA,101,BANJIR,100.552812,0.028057,5,1,130,515,2,0,0,0,2,2
+9                                                                                                                                                    1309,PASAMAN,101,BANJIR,100.047454,0.399888,5,1,7570,0,69,0,0,0,2,2
+10                                                                                                                                               1310,SOLOK SELATAN,101,BANJIR,101.273582,-1.365012,1,0,75,0,0,0,0,0,0,0
+11                                                                                                                                                  1311,DHARMASRAYA,101,BANJIR,101.519325,-1.250643,1,0,0,0,0,0,0,0,1,0
+12                                                                                                                                               1312,PASAMAN BARAT,101,BANJIR,99.607742,0.187961,5,1,0,1050,2,0,0,0,1,0
+13                                                                                                                                              1371,KOTA PADANG,101,BANJIR,100.427954,-0.936425,2,2,6062,12,4,0,0,0,0,1
+14                                                                                                                                                1372,KOTA SOLOK,101,BANJIR,100.837884,-0.927534,2,0,1070,0,0,0,0,0,2,1
+15                                                                                                                                           1375,KOTA BUKITTINGGI,101,BANJIR,100.369072,-0.299229,3,0,256,0,0,0,0,0,1,1
+16                                                                                                                                           1305,TANAH DATAR,102,TANAH LONGSOR,100.582793,-0.469818,1,0,0,0,0,1,0,0,0,0
+17                                                                                                                                      1306,PADANG PARIAMAN,102,TANAH LONGSOR,100.209847,-0.566716,5,3,19,0,9,8,2,0,0,0
+18                                                                                                                                                  1307,AGAM,102,TANAH LONGSOR,100.153757,-0.253182,2,0,0,0,0,0,7,0,0,1
+19                                                                                                                                        1308,LIMA PULUH KOTA,102,TANAH LONGSOR,100.552812,0.028057,2,1,0,0,0,0,1,0,0,0
+20                                                                                                                                           1371,KOTA PADANG,102,TANAH LONGSOR,100.427954,-0.936425,1,1,0,0,0,0,0,0,0,0
+21                                                                                                                                      1373,KOTA SAWAHLUNTO,102,TANAH LONGSOR,100.75663,-0.661471,1,0,0,22,4,0,12,0,0,0
+22                                                                                                                                      1375,KOTA BUKITTINGGI,102,TANAH LONGSOR,100.369072,-0.299229,1,0,0,0,0,0,0,0,0,0
+23                                                                                                                                         1377,KOTA PARIAMAN,102,TANAH LONGSOR,100.136282,-0.612028,1,3,0,0,1,0,0,0,0,0
+24                                                                                                                           1306,PADANG PARIAMAN,104,GELOMBANG PASANG / ABRASI,100.209847,-0.566716,1,0,0,0,0,0,0,0,0,2
+25                                                                                                                            1371,KOTA PADANG,104,GELOMBANG PASANG / ABRASI,100.427954,-0.936425,1,0,140,0,0,28,0,0,0,0
+26                                                                                                                                 1306,PADANG PARIAMAN,105,PUTING BELIUNG,100.209847,-0.566716,14,0,55,35,5,10,13,0,0,0
+27                                                                                                                                                 1307,AGAM,105,PUTING BELIUNG,100.153757,-0.253182,1,1,0,0,0,1,0,0,0,0
+28                                                                                                                                      1308,LIMA PULUH KOTA,105,PUTING BELIUNG,100.552812,0.028057,4,0,15,0,3,0,2,0,0,0
+29                                                                                                                                        1310,SOLOK SELATAN,105,PUTING BELIUNG,101.273582,-1.365012,2,0,0,0,0,1,2,0,0,0
+30                                                                                                                                          1371,KOTA PADANG,105,PUTING BELIUNG,100.427954,-0.936425,2,0,0,0,2,5,9,0,0,0
+31                                                                                                                                           1372,KOTA SOLOK,105,PUTING BELIUNG,100.837884,-0.927534,1,0,0,0,0,0,1,0,0,0
+32                                                                                                                                       1373,KOTA SAWAHLUNTO,105,PUTING BELIUNG,100.75663,-0.661471,1,0,0,0,0,0,1,0,0,0
+33                                                                                                                                     1303,SOLOK,107,KEBAKARAN HUTAN DAN LAHAN,100.837884,-0.927534,1,0,0,0,0,0,0,0,0,0
+34                                                                                                                                                 1303,SOLOK,108,GEMPA BUMI,100.837884,-0.927534,1,1,0,54,19,5,63,0,0,0
+35                                                                                                                                             1371,KOTA PADANG,108,GEMPA BUMI,100.427954,-0.936425,1,0,0,0,6,0,19,0,0,0
+36                                                                                                                                      1305,TANAH DATAR,111,LETUSAN GUNUNG API,100.582793,-0.469818,2,0,0,0,0,0,0,0,0,0
+> data=read.table(file.choose(),sep=",",header=T)
+> data
+   Kode_Kab.Kot       Nama_kab.kot Kode_bencana                  Kejadian
+1          1301 KEPULAUAN MENTAWAI          101                    BANJIR
+2          1302    PESISIR SELATAN          101                    BANJIR
+3          1303              SOLOK          101                    BANJIR
+4          1304          SIJUNJUNG          101                    BANJIR
+5          1305        TANAH DATAR          101                    BANJIR
+6          1306    PADANG PARIAMAN          101                    BANJIR
+7          1307               AGAM          101                    BANJIR
+8          1308    LIMA PULUH KOTA          101                    BANJIR
+9          1309            PASAMAN          101                    BANJIR
+10         1310      SOLOK SELATAN          101                    BANJIR
+11         1311        DHARMASRAYA          101                    BANJIR
+12         1312      PASAMAN BARAT          101                    BANJIR
+13         1371        KOTA PADANG          101                    BANJIR
+14         1372         KOTA SOLOK          101                    BANJIR
+15         1375   KOTA BUKITTINGGI          101                    BANJIR
+16         1305        TANAH DATAR          102             TANAH LONGSOR
+17         1306    PADANG PARIAMAN          102             TANAH LONGSOR
+18         1307               AGAM          102             TANAH LONGSOR
+19         1308    LIMA PULUH KOTA          102             TANAH LONGSOR
+20         1371        KOTA PADANG          102             TANAH LONGSOR
+21         1373    KOTA SAWAHLUNTO          102             TANAH LONGSOR
+22         1375   KOTA BUKITTINGGI          102             TANAH LONGSOR
+23         1377      KOTA PARIAMAN          102             TANAH LONGSOR
+24         1306    PADANG PARIAMAN          104 GELOMBANG PASANG / ABRASI
+25         1371        KOTA PADANG          104 GELOMBANG PASANG / ABRASI
+26         1306    PADANG PARIAMAN          105            PUTING BELIUNG
+27         1307               AGAM          105            PUTING BELIUNG
+28         1308    LIMA PULUH KOTA          105            PUTING BELIUNG
+29         1310      SOLOK SELATAN          105            PUTING BELIUNG
+30         1371        KOTA PADANG          105            PUTING BELIUNG
+31         1372         KOTA SOLOK          105            PUTING BELIUNG
+32         1373    KOTA SAWAHLUNTO          105            PUTING BELIUNG
+33         1303              SOLOK          107 KEBAKARAN HUTAN DAN LAHAN
+34         1303              SOLOK          108                GEMPA BUMI
+35         1371        KOTA PADANG          108                GEMPA BUMI
+36         1305        TANAH DATAR          111        LETUSAN GUNUNG API
+         Lon       Lat Jumlah.Bencana Meninggal.dan.Hilang Menderita Mengungsi
+1   98.95060 -1.359494              4                    0         0         0
+2  100.81677 -1.717765              2                    0         0         0
+3  100.83788 -0.927534              3                    1      3237       279
+4  101.14920 -0.648475              5                    1         6         0
+5  100.58279 -0.469818              1                    6         0        24
+6  100.20985 -0.566716              6                    0        50        73
+7  100.15376 -0.253182              5                    0      1469         0
+8  100.55281  0.028057              5                    1       130       515
+9  100.04745  0.399888              5                    1      7570         0
+10 101.27358 -1.365012              1                    0        75         0
+11 101.51932 -1.250643              1                    0         0         0
+12  99.60774  0.187961              5                    1         0      1050
+13 100.42795 -0.936425              2                    2      6062        12
+14 100.83788 -0.927534              2                    0      1070         0
+15 100.36907 -0.299229              3                    0       256         0
+16 100.58279 -0.469818              1                    0         0         0
+17 100.20985 -0.566716              5                    3        19         0
+18 100.15376 -0.253182              2                    0         0         0
+19 100.55281  0.028057              2                    1         0         0
+20 100.42795 -0.936425              1                    1         0         0
+21 100.75663 -0.661471              1                    0         0        22
+22 100.36907 -0.299229              1                    0         0         0
+23 100.13628 -0.612028              1                    3         0         0
+24 100.20985 -0.566716              1                    0         0         0
+25 100.42795 -0.936425              1                    0       140         0
+26 100.20985 -0.566716             14                    0        55        35
+27 100.15376 -0.253182              1                    1         0         0
+28 100.55281  0.028057              4                    0        15         0
+29 101.27358 -1.365012              2                    0         0         0
+30 100.42795 -0.936425              2                    0         0         0
+31 100.83788 -0.927534              1                    0         0         0
+32 100.75663 -0.661471              1                    0         0         0
+33 100.83788 -0.927534              1                    0         0         0
+34 100.83788 -0.927534              1                    1         0        54
+35 100.42795 -0.936425              1                    0         0         0
+36 100.58279 -0.469818              2                    0         0         0
+   Rumah.Rusak.Berat Rumah.Rusak.Sedang Rumah.Rusak.Ringan Faskes.Rusak
+1                  0                  0                  0            0
+2                  0                  0                  0            0
+3                  2                  4                 14            0
+4                 26                  1                 30            0
+5                 11                  0                  0            0
+6                  3                  0                 17            0
+7                  1                  2                  2            0
+8                  2                  0                  0            0
+9                 69                  0                  0            0
+10                 0                  0                  0            0
+11                 0                  0                  0            0
+12                 2                  0                  0            0
+13                 4                  0                  0            0
+14                 0                  0                  0            0
+15                 0                  0                  0            0
+16                 0                  1                  0            0
+17                 9                  8                  2            0
+18                 0                  0                  7            0
+19                 0                  0                  1            0
+20                 0                  0                  0            0
+21                 4                  0                 12            0
+22                 0                  0                  0            0
+23                 1                  0                  0            0
+24                 0                  0                  0            0
+25                 0                 28                  0            0
+26                 5                 10                 13            0
+27                 0                  1                  0            0
+28                 3                  0                  2            0
+29                 0                  1                  2            0
+30                 2                  5                  9            0
+31                 0                  0                  1            0
+32                 0                  0                  1            0
+33                 0                  0                  0            0
+34                19                  5                 63            0
+35                 6                  0                 19            0
+36                 0                  0                  0            0
+   Rumah.Ibadah.Rusak Sekolah.Rusak
+1                   0             0
+2                   0             5
+3                   9             5
+4                   3             0
+5                   0             1
+6                   4             0
+7                   1             1
+8                   2             2
+9                   2             2
+10                  0             0
+11                  1             0
+12                  1             0
+13                  0             1
+14                  2             1
+15                  1             1
+16                  0             0
+17                  0             0
+18                  0             1
+19                  0             0
+20                  0             0
+21                  0             0
+22                  0             0
+23                  0             0
+24                  0             2
+25                  0             0
+26                  0             0
+27                  0             0
+28                  0             0
+29                  0             0
+30                  0             0
+31                  0             0
+32                  0             0
+33                  0             0
+34                  0             0
+35                  0             0
+36                  0             0
+> barplot(data,kejadian="BANJIR")
+Error in barplot.default(data, kejadian = "BANJIR") : 
+  'height' must be a vector or a matrix
+> hist (data, main="KEJADIAN")
+Error in hist.default(data, main = "KEJADIAN") : 'x' must be numeric
+> data1=data$Kejadian
+> data1
+ [1] BANJIR                    BANJIR                   
+ [3] BANJIR                    BANJIR                   
+ [5] BANJIR                    BANJIR                   
+ [7] BANJIR                    BANJIR                   
+ [9] BANJIR                    BANJIR                   
+[11] BANJIR                    BANJIR                   
+[13] BANJIR                    BANJIR                   
+[15] BANJIR                    TANAH LONGSOR            
+[17] TANAH LONGSOR             TANAH LONGSOR            
+[19] TANAH LONGSOR             TANAH LONGSOR            
+[21] TANAH LONGSOR             TANAH LONGSOR            
+[23] TANAH LONGSOR             GELOMBANG PASANG / ABRASI
+[25] GELOMBANG PASANG / ABRASI PUTING BELIUNG           
+[27] PUTING BELIUNG            PUTING BELIUNG           
+[29] PUTING BELIUNG            PUTING BELIUNG           
+[31] PUTING BELIUNG            PUTING BELIUNG           
+[33] KEBAKARAN HUTAN DAN LAHAN GEMPA BUMI               
+[35] GEMPA BUMI                LETUSAN GUNUNG API       
+7 Levels: BANJIR GELOMBANG PASANG / ABRASI ... TANAH LONGSOR
+> hist(Kejadian)
+Error in hist(Kejadian) : object 'Kejadian' not found
+> hist(data1)
+Error in hist.default(data1) : 'x' must be numeric
+> count=table(data$Kejadian)
+> count
+
+                   BANJIR GELOMBANG PASANG / ABRASI                GEMPA BUMI 
+                       15                         2                         2 
+KEBAKARAN HUTAN DAN LAHAN        LETUSAN GUNUNG API            PUTING BELIUNG 
+                        1                         1                         7 
+            TANAH LONGSOR 
+                        8 
+> barplot(count)
+> colours
+function (distinct = FALSE) 
+{
+    c <- .Call(C_colors)
+    if (distinct) 
+        c[!duplicated(t(col2rgb(c)))]
+    else c
+}
+<bytecode: 0x00000000079741a0>
+<environment: namespace:grDevices>
+> colours()
+  [1] "white"                "aliceblue"           
+  [3] "antiquewhite"         "antiquewhite1"       
+  [5] "antiquewhite2"        "antiquewhite3"       
+  [7] "antiquewhite4"        "aquamarine"          
+  [9] "aquamarine1"          "aquamarine2"         
+ [11] "aquamarine3"          "aquamarine4"         
+ [13] "azure"                "azure1"              
+ [15] "azure2"               "azure3"              
+ [17] "azure4"               "beige"               
+ [19] "bisque"               "bisque1"             
+ [21] "bisque2"              "bisque3"             
+ [23] "bisque4"              "black"               
+ [25] "blanchedalmond"       "blue"                
+ [27] "blue1"                "blue2"               
+ [29] "blue3"                "blue4"               
+ [31] "blueviolet"           "brown"               
+ [33] "brown1"               "brown2"              
+ [35] "brown3"               "brown4"              
+ [37] "burlywood"            "burlywood1"          
+ [39] "burlywood2"           "burlywood3"          
+ [41] "burlywood4"           "cadetblue"           
+ [43] "cadetblue1"           "cadetblue2"          
+ [45] "cadetblue3"           "cadetblue4"          
+ [47] "chartreuse"           "chartreuse1"         
+ [49] "chartreuse2"          "chartreuse3"         
+ [51] "chartreuse4"          "chocolate"           
+ [53] "chocolate1"           "chocolate2"          
+ [55] "chocolate3"           "chocolate4"          
+ [57] "coral"                "coral1"              
+ [59] "coral2"               "coral3"              
+ [61] "coral4"               "cornflowerblue"      
+ [63] "cornsilk"             "cornsilk1"           
+ [65] "cornsilk2"            "cornsilk3"           
+ [67] "cornsilk4"            "cyan"                
+ [69] "cyan1"                "cyan2"               
+ [71] "cyan3"                "cyan4"               
+ [73] "darkblue"             "darkcyan"            
+ [75] "darkgoldenrod"        "darkgoldenrod1"      
+ [77] "darkgoldenrod2"       "darkgoldenrod3"      
+ [79] "darkgoldenrod4"       "darkgray"            
+ [81] "darkgreen"            "darkgrey"            
+ [83] "darkkhaki"            "darkmagenta"         
+ [85] "darkolivegreen"       "darkolivegreen1"     
+ [87] "darkolivegreen2"      "darkolivegreen3"     
+ [89] "darkolivegreen4"      "darkorange"          
+ [91] "darkorange1"          "darkorange2"         
+ [93] "darkorange3"          "darkorange4"         
+ [95] "darkorchid"           "darkorchid1"         
+ [97] "darkorchid2"          "darkorchid3"         
+ [99] "darkorchid4"          "darkred"             
+[101] "darksalmon"           "darkseagreen"        
+[103] "darkseagreen1"        "darkseagreen2"       
+[105] "darkseagreen3"        "darkseagreen4"       
+[107] "darkslateblue"        "darkslategray"       
+[109] "darkslategray1"       "darkslategray2"      
+[111] "darkslategray3"       "darkslategray4"      
+[113] "darkslategrey"        "darkturquoise"       
+[115] "darkviolet"           "deeppink"            
+[117] "deeppink1"            "deeppink2"           
+[119] "deeppink3"            "deeppink4"           
+[121] "deepskyblue"          "deepskyblue1"        
+[123] "deepskyblue2"         "deepskyblue3"        
+[125] "deepskyblue4"         "dimgray"             
+[127] "dimgrey"              "dodgerblue"          
+[129] "dodgerblue1"          "dodgerblue2"         
+[131] "dodgerblue3"          "dodgerblue4"         
+[133] "firebrick"            "firebrick1"          
+[135] "firebrick2"           "firebrick3"          
+[137] "firebrick4"           "floralwhite"         
+[139] "forestgreen"          "gainsboro"           
+[141] "ghostwhite"           "gold"                
+[143] "gold1"                "gold2"               
+[145] "gold3"                "gold4"               
+[147] "goldenrod"            "goldenrod1"          
+[149] "goldenrod2"           "goldenrod3"          
+[151] "goldenrod4"           "gray"                
+[153] "gray0"                "gray1"               
+[155] "gray2"                "gray3"               
+[157] "gray4"                "gray5"               
+[159] "gray6"                "gray7"               
+[161] "gray8"                "gray9"               
+[163] "gray10"               "gray11"              
+[165] "gray12"               "gray13"              
+[167] "gray14"               "gray15"              
+[169] "gray16"               "gray17"              
+[171] "gray18"               "gray19"              
+[173] "gray20"               "gray21"              
+[175] "gray22"               "gray23"              
+[177] "gray24"               "gray25"              
+[179] "gray26"               "gray27"              
+[181] "gray28"               "gray29"              
+[183] "gray30"               "gray31"              
+[185] "gray32"               "gray33"              
+[187] "gray34"               "gray35"              
+[189] "gray36"               "gray37"              
+[191] "gray38"               "gray39"              
+[193] "gray40"               "gray41"              
+[195] "gray42"               "gray43"              
+[197] "gray44"               "gray45"              
+[199] "gray46"               "gray47"              
+[201] "gray48"               "gray49"              
+[203] "gray50"               "gray51"              
+[205] "gray52"               "gray53"              
+[207] "gray54"               "gray55"              
+[209] "gray56"               "gray57"              
+[211] "gray58"               "gray59"              
+[213] "gray60"               "gray61"              
+[215] "gray62"               "gray63"              
+[217] "gray64"               "gray65"              
+[219] "gray66"               "gray67"              
+[221] "gray68"               "gray69"              
+[223] "gray70"               "gray71"              
+[225] "gray72"               "gray73"              
+[227] "gray74"               "gray75"              
+[229] "gray76"               "gray77"              
+[231] "gray78"               "gray79"              
+[233] "gray80"               "gray81"              
+[235] "gray82"               "gray83"              
+[237] "gray84"               "gray85"              
+[239] "gray86"               "gray87"              
+[241] "gray88"               "gray89"              
+[243] "gray90"               "gray91"              
+[245] "gray92"               "gray93"              
+[247] "gray94"               "gray95"              
+[249] "gray96"               "gray97"              
+[251] "gray98"               "gray99"              
+[253] "gray100"              "green"               
+[255] "green1"               "green2"              
+[257] "green3"               "green4"              
+[259] "greenyellow"          "grey"                
+[261] "grey0"                "grey1"               
+[263] "grey2"                "grey3"               
+[265] "grey4"                "grey5"               
+[267] "grey6"                "grey7"               
+[269] "grey8"                "grey9"               
+[271] "grey10"               "grey11"              
+[273] "grey12"               "grey13"              
+[275] "grey14"               "grey15"              
+[277] "grey16"               "grey17"              
+[279] "grey18"               "grey19"              
+[281] "grey20"               "grey21"              
+[283] "grey22"               "grey23"              
+[285] "grey24"               "grey25"              
+[287] "grey26"               "grey27"              
+[289] "grey28"               "grey29"              
+[291] "grey30"               "grey31"              
+[293] "grey32"               "grey33"              
+[295] "grey34"               "grey35"              
+[297] "grey36"               "grey37"              
+[299] "grey38"               "grey39"              
+[301] "grey40"               "grey41"              
+[303] "grey42"               "grey43"              
+[305] "grey44"               "grey45"              
+[307] "grey46"               "grey47"              
+[309] "grey48"               "grey49"              
+[311] "grey50"               "grey51"              
+[313] "grey52"               "grey53"              
+[315] "grey54"               "grey55"              
+[317] "grey56"               "grey57"              
+[319] "grey58"               "grey59"              
+[321] "grey60"               "grey61"              
+[323] "grey62"               "grey63"              
+[325] "grey64"               "grey65"              
+[327] "grey66"               "grey67"              
+[329] "grey68"               "grey69"              
+[331] "grey70"               "grey71"              
+[333] "grey72"               "grey73"              
+[335] "grey74"               "grey75"              
+[337] "grey76"               "grey77"              
+[339] "grey78"               "grey79"              
+[341] "grey80"               "grey81"              
+[343] "grey82"               "grey83"              
+[345] "grey84"               "grey85"              
+[347] "grey86"               "grey87"              
+[349] "grey88"               "grey89"              
+[351] "grey90"               "grey91"              
+[353] "grey92"               "grey93"              
+[355] "grey94"               "grey95"              
+[357] "grey96"               "grey97"              
+[359] "grey98"               "grey99"              
+[361] "grey100"              "honeydew"            
+[363] "honeydew1"            "honeydew2"           
+[365] "honeydew3"            "honeydew4"           
+[367] "hotpink"              "hotpink1"            
+[369] "hotpink2"             "hotpink3"            
+[371] "hotpink4"             "indianred"           
+[373] "indianred1"           "indianred2"          
+[375] "indianred3"           "indianred4"          
+[377] "ivory"                "ivory1"              
+[379] "ivory2"               "ivory3"              
+[381] "ivory4"               "khaki"               
+[383] "khaki1"               "khaki2"              
+[385] "khaki3"               "khaki4"              
+[387] "lavender"             "lavenderblush"       
+[389] "lavenderblush1"       "lavenderblush2"      
+[391] "lavenderblush3"       "lavenderblush4"      
+[393] "lawngreen"            "lemonchiffon"        
+[395] "lemonchiffon1"        "lemonchiffon2"       
+[397] "lemonchiffon3"        "lemonchiffon4"       
+[399] "lightblue"            "lightblue1"          
+[401] "lightblue2"           "lightblue3"          
+[403] "lightblue4"           "lightcoral"          
+[405] "lightcyan"            "lightcyan1"          
+[407] "lightcyan2"           "lightcyan3"          
+[409] "lightcyan4"           "lightgoldenrod"      
+[411] "lightgoldenrod1"      "lightgoldenrod2"     
+[413] "lightgoldenrod3"      "lightgoldenrod4"     
+[415] "lightgoldenrodyellow" "lightgray"           
+[417] "lightgreen"           "lightgrey"           
+[419] "lightpink"            "lightpink1"          
+[421] "lightpink2"           "lightpink3"          
+[423] "lightpink4"           "lightsalmon"         
+[425] "lightsalmon1"         "lightsalmon2"        
+[427] "lightsalmon3"         "lightsalmon4"        
+[429] "lightseagreen"        "lightskyblue"        
+[431] "lightskyblue1"        "lightskyblue2"       
+[433] "lightskyblue3"        "lightskyblue4"       
+[435] "lightslateblue"       "lightslategray"      
+[437] "lightslategrey"       "lightsteelblue"      
+[439] "lightsteelblue1"      "lightsteelblue2"     
+[441] "lightsteelblue3"      "lightsteelblue4"     
+[443] "lightyellow"          "lightyellow1"        
+[445] "lightyellow2"         "lightyellow3"        
+[447] "lightyellow4"         "limegreen"           
+[449] "linen"                "magenta"             
+[451] "magenta1"             "magenta2"            
+[453] "magenta3"             "magenta4"            
+[455] "maroon"               "maroon1"             
+[457] "maroon2"              "maroon3"             
+[459] "maroon4"              "mediumaquamarine"    
+[461] "mediumblue"           "mediumorchid"        
+[463] "mediumorchid1"        "mediumorchid2"       
+[465] "mediumorchid3"        "mediumorchid4"       
+[467] "mediumpurple"         "mediumpurple1"       
+[469] "mediumpurple2"        "mediumpurple3"       
+[471] "mediumpurple4"        "mediumseagreen"      
+[473] "mediumslateblue"      "mediumspringgreen"   
+[475] "mediumturquoise"      "mediumvioletred"     
+[477] "midnightblue"         "mintcream"           
+[479] "mistyrose"            "mistyrose1"          
+[481] "mistyrose2"           "mistyrose3"          
+[483] "mistyrose4"           "moccasin"            
+[485] "navajowhite"          "navajowhite1"        
+[487] "navajowhite2"         "navajowhite3"        
+[489] "navajowhite4"         "navy"                
+[491] "navyblue"             "oldlace"             
+[493] "olivedrab"            "olivedrab1"          
+[495] "olivedrab2"           "olivedrab3"          
+[497] "olivedrab4"           "orange"              
+[499] "orange1"              "orange2"             
+[501] "orange3"              "orange4"             
+[503] "orangered"            "orangered1"          
+[505] "orangered2"           "orangered3"          
+[507] "orangered4"           "orchid"              
+[509] "orchid1"              "orchid2"             
+[511] "orchid3"              "orchid4"             
+[513] "palegoldenrod"        "palegreen"           
+[515] "palegreen1"           "palegreen2"          
+[517] "palegreen3"           "palegreen4"          
+[519] "paleturquoise"        "paleturquoise1"      
+[521] "paleturquoise2"       "paleturquoise3"      
+[523] "paleturquoise4"       "palevioletred"       
+[525] "palevioletred1"       "palevioletred2"      
+[527] "palevioletred3"       "palevioletred4"      
+[529] "papayawhip"           "peachpuff"           
+[531] "peachpuff1"           "peachpuff2"          
+[533] "peachpuff3"           "peachpuff4"          
+[535] "peru"                 "pink"                
+[537] "pink1"                "pink2"               
+[539] "pink3"                "pink4"               
+[541] "plum"                 "plum1"               
+[543] "plum2"                "plum3"               
+[545] "plum4"                "powderblue"          
+[547] "purple"               "purple1"             
+[549] "purple2"              "purple3"             
+[551] "purple4"              "red"                 
+[553] "red1"                 "red2"                
+[555] "red3"                 "red4"                
+[557] "rosybrown"            "rosybrown1"          
+[559] "rosybrown2"           "rosybrown3"          
+[561] "rosybrown4"           "royalblue"           
+[563] "royalblue1"           "royalblue2"          
+[565] "royalblue3"           "royalblue4"          
+[567] "saddlebrown"          "salmon"              
+[569] "salmon1"              "salmon2"             
+[571] "salmon3"              "salmon4"             
+[573] "sandybrown"           "seagreen"            
+[575] "seagreen1"            "seagreen2"           
+[577] "seagreen3"            "seagreen4"           
+[579] "seashell"             "seashell1"           
+[581] "seashell2"            "seashell3"           
+[583] "seashell4"            "sienna"              
+[585] "sienna1"              "sienna2"             
+[587] "sienna3"              "sienna4"             
+[589] "skyblue"              "skyblue1"            
+[591] "skyblue2"             "skyblue3"            
+[593] "skyblue4"             "slateblue"           
+[595] "slateblue1"           "slateblue2"          
+[597] "slateblue3"           "slateblue4"          
+[599] "slategray"            "slategray1"          
+[601] "slategray2"           "slategray3"          
+[603] "slategray4"           "slategrey"           
+[605] "snow"                 "snow1"               
+[607] "snow2"                "snow3"               
+[609] "snow4"                "springgreen"         
+[611] "springgreen1"         "springgreen2"        
+[613] "springgreen3"         "springgreen4"        
+[615] "steelblue"            "steelblue1"          
+[617] "steelblue2"           "steelblue3"          
+[619] "steelblue4"           "tan"                 
+[621] "tan1"                 "tan2"                
+[623] "tan3"                 "tan4"                
+[625] "thistle"              "thistle1"            
+[627] "thistle2"             "thistle3"            
+[629] "thistle4"             "tomato"              
+[631] "tomato1"              "tomato2"             
+[633] "tomato3"              "tomato4"             
+[635] "turquoise"            "turquoise1"          
+[637] "turquoise2"           "turquoise3"          
+[639] "turquoise4"           "violet"              
+[641] "violetred"            "violetred1"          
+[643] "violetred2"           "violetred3"          
+[645] "violetred4"           "wheat"               
+[647] "wheat1"               "wheat2"              
+[649] "wheat3"               "wheat4"              
+[651] "whitesmoke"           "yellow"              
+[653] "yellow1"              "yellow2"             
+[655] "yellow3"              "yellow4"             
+[657] "yellowgreen"         
+> barplot(count,col="red,names.arg=c("Banjir","Gempa","Letusan Gunung","Puting Beliung","tanah longsor"),main="Kejadian)
+Error: unexpected symbol in "barplot(count,col="red,names.arg=c("Banjir"
+> barplot(count,col="red,names.arg=c("Banjir","Gempa","Letusan Gunung","Puting Beliung","tanah longsor"),main="Kejadian Bencana ALam",xlab="Number of Event")
+Error: unexpected symbol in "barplot(count,col="red,names.arg=c("Banjir"
+> barplot(count,col="red",names.arg=c("Banjir","Gempa","Letusan Gunung","Puting Beliung","tanah longsor"),main="Kejadian Bencana ALam",xlab="Number of Event")
+Error in barplot.default(count, col = "red", names.arg = c("Banjir", "Gempa",  : 
+  incorrect number of names
+> barplot(count,col=c("red","yellow3","snow4","violetred","green","gray","wheat1"),names.arg=c("Banjir","abrasi","Gempa","kebakaran","letusangunung","putingBeliung","TanahLongsor"),main="Kejadian Bencana Alam",ylab="Number of Event")
+> barplot(count,col="green",names.arg=c("Banjir","abrasi","Gempa","kebakaran","letusangunung","putingBeliung","TanahLongsor"),main="Kejadian Bencana Alam",ylab="Number of Event")
+>  barplot(count,col="magenta",names.arg=c("Banjir","abrasi","Gempa","kebakaran","letusangunung","putingBeliung","TanahLongsor"),main="Kejadian Bencana Alam",ylab="Number of Event")
+>  barplot(count,col="peru",names.arg=c("Banjir","abrasi","Gempa","kebakaran","letusangunung","putingBeliung","TanahLongsor"),main="Kejadian Bencana Alam",ylab="Number of Event")
+> 
+>  barplot(count,col="deeppink",names.arg=c("Banjir","abrasi","Gempa","kebakaran","letusangunung","putingBeliung","TanahLongsor"),main="Kejadian Bencana Alam",ylab="Number of Event")
+> 
